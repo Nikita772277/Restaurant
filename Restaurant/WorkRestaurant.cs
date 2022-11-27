@@ -8,38 +8,42 @@ namespace Restaurant
 {
     internal class WorkRestaurant
     {
-        private static string[] strings = new string[8] { "Burger", "Fries", "Chicken", "Pizza", "Sandwich", "Onionrings", "Milkshake", "Coke" };
-        private List<string> faw = new();
+        public static string[] _restaurantmenu = new string[8] { "Burger", "Fries", "Chicken", "Pizza", "Sandwich", "Onionrings", "Milkshake", "Coke" };
+        private List<string> _ordering;
         public void Transformation()
         {
-            string enter = Console.ReadLine();            
-            foreach (string s in strings)
+            _ordering = new();
+            Console.WriteLine();
+            Console.WriteLine($"Введите ваш заказ");
+            string enter = Console.ReadLine();
+            foreach (string orderpoint in _restaurantmenu)
             {
-                var trans= s.ToLower();
-                var a = enter.Contains(trans);                
-                if (a)
+                string trans = orderpoint.ToLower();
+                bool exists = enter.Contains(trans);
+                if (exists)
                 {
-                    faw.Add(s);
+                    _ordering.Add(orderpoint);
                 }
             }
         }
         public void Get()
         {
-            foreach(string s in faw)
-            {                
-                int g= 0;
-                foreach(var a in s)
+            Console.Write($"Ваш заказ: ");
+            foreach (string orderpoint in _ordering)
+            {
+                int number = 0;
+                foreach (var symbol in orderpoint)
                 {
-                    if (g < 1)
+                    if (number < 1)
                     {
-                        var c = char.ToUpper(a);
-                        Console.Write($"{c}");
+                        var firstsymbol = char.ToUpper(symbol);
+                        Console.Write($"{firstsymbol}");
                     }
-                    else if (g >= 1)
+                    else if (number >= 1)
                     {
-                        Console.Write(a);
+                        Console.Write(symbol);
                     }
-                    g++;                    
+                    number++;
                 }
                 Console.Write(" ");
             }

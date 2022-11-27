@@ -1,21 +1,24 @@
-﻿
-
-using Restaurant;
+﻿using Restaurant;
 
 WorkRestaurant workRestaurant = new();
-workRestaurant.Transformation();
-workRestaurant.Get();
-void Memu()
+
+void Menu()
 {
-    Console.WriteLine($"Меню ресторана");
+    var menu = WorkRestaurant._restaurantmenu;
+    Console.WriteLine($"Меню ресторана:");
     Console.WriteLine();
-    Console.WriteLine($"1. Burger");
-    Console.WriteLine($"2. Fries");
-    Console.WriteLine($"3. Chicken");
-    Console.WriteLine($"4. Pizza");
-    Console.WriteLine($"5. Sandwich");
-    Console.WriteLine($"6. Onionrings");
-    Console.WriteLine($"7. Milkshake");
-    Console.WriteLine($"8. Coke");
-    Console.WriteLine();
+    for (int i = 0; i < menu.Length; i++)
+    {
+        Console.WriteLine($"{i + 1}) {menu[i]}");
+    }
 }
+void UseMenu()
+{
+    while (true)
+    {
+        Menu();
+        workRestaurant.Transformation();
+        workRestaurant.Get();
+    }
+}
+UseMenu();
